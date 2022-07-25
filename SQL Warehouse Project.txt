@@ -1,0 +1,1059 @@
+CREATE TABLE Supplier(Supplier_id SERIAL PRIMARY KEY,
+
+ Company_name varchar(200) NOT NULL,
+
+ Contact_name varchar(200) NOT NULL,
+
+ Contact_email varchar(200) NOT NULL,
+
+ Address varchar(200) UNIQUE NOT NULL, 
+
+ City varchar(200) NOT NULL,
+
+ Region varchar(200) NOT NULL,
+
+ Postal_Code varchar(200) UNIQUE NOT NULL, 
+
+ Country varchar(200) NOT NULL,
+
+ Phone varchar(50) UNIQUE NOT NULL, 
+
+ Home_Page varchar(200) UNIQUE NOT NULL
+
+);
+
+
+
+CREATE TABLE Product(Product_id SERIAL PRIMARY KEY, 
+
+Product_Name varchar(200) NOT NULL,
+
+Supplier_id INTEGER REFERENCES Supplier(Supplier_id),
+
+Category_id varchar(200) NOT NULL,
+
+Quantity_Per_Unit varchar(200) NOT NULL,
+
+Unit_Price varchar(200) NOT NULL,
+
+Units_In_Stock varchar(200) NOT NULL, 
+
+Units_On_Order varchar(200) NOT NULL,
+
+ReOrder_Level varchar(200) NOT NULL,
+
+Discontinued varchar(200) NOT NULL
+
+);
+
+
+
+CREATE TABLE Order_Detail(Order_id SERIAL PRIMARY KEY,
+
+ Product_id INTEGER REFERENCES Product(Product_id),
+
+ Unit_Price varchar(200) NOT NULL,
+
+ Quantity varchar(200) NOT NULL,
+
+ Price varchar(200) NOT NULL
+
+);
+
+
+
+CREATE TABLE Customer(Customer_id SERIAL PRIMARY KEY,
+
+ Company_Name varchar(200) NOT NULL, 
+
+ Contact_Name varchar(200) NOT NULL,
+
+ Contact_Title varchar(200) NOT NULL,
+
+ Address varchar(200) NOT NULL,
+
+ City varchar(200) NOT NULL,
+
+ Region varchar(200) NOT NULL,
+
+ Postal_Code varchar(200) NOT NULL,
+
+ Country varchar(200) NOT NULL,
+
+ Phone varchar(200) NOT NULL,
+
+ Fax varchar (200) NOT NULL
+
+);
+
+
+
+CREATE TABLE Orders(Order_id INTEGER REFERENCES Order_detail(Order_id),
+
+   Customer_id INTEGER REFERENCES      Customer(Customer_id),
+
+   Employee_id SERIAL PRIMARY KEY,
+
+   Order_Date varchar(200) NOT NULL,
+
+   Required_Date varchar(200) NOT NULL,
+
+   Shipped_Date varchar(200) NOT NULL,
+
+   Shipped_Via varchar(200) NOT NULL,
+
+   Freight varchar(200) NOT NULL,
+
+   Ship_Name varchar(200) NOT NULL,
+
+   Ship_Address varchar(200) NOT NULL,
+
+   Ship_City varchar(200) NOT NULL,
+
+   Ship_Region varchar(200) NOT NULL,
+
+   Ship_PostCode varchar(200) NOT NULL,
+
+   Ship_Country varchar(200) NOT NULL
+
+
+);
+
+
+
+INSERT INTO Supplier(Supplier_id, company_name, contact_name, contact_email, Address, city, region, post_code, country, phone, home_page)
+
+
+
+VALUES
+
+
+
+('1', 'Lego', 'Niels Christiansen', 'Nielschristiansen@lego.co.uk',  '8-10 New Fetter Lane', 'London', 'Middlesex', 'EC4A 1AZ', 'England', '0312778197', 'www.Lego.com') ;
+
+
+
+INSERT INTO Supplier(Supplier_id, company_name, contact_name, contact_email, Address, city, region, postal_code, country, phone, home_page)
+
+
+
+VALUES
+
+
+
+('2', 'hasbro', 'Chris Cocks', 'chriscocks@hasbro.co.uk', 'Stockley Park, 4 the square', 'London', 'Middlesex', 'UB11 1et', 'England', '020 8569 1234'. 'Null', 'products.hasbro.com/en-gb');
+
+
+
+INSERT INTO Supplier(Supplier_id, company_name, contact_name, contact_email, Address, city, region, postal_code, country, phone, home_page)
+
+
+
+VALUES
+
+
+
+('3' 'Mattel', 'Sanjay Luthra', 'Sanjayluthra@mattel.co.uk' , '3rd Floor The Porter Building, 1 Brunel Way' , 'Slough', 'Berkshire', 'SL1 1FQ', 'England', '01628 500000', 'shop.mattel.com');
+
+
+
+INSERT INTO Supplier(Supplier_id, company_name, contact_name, contact_email, Address, city, region, postal_code, country, phone, home_page)
+
+
+
+VALUES
+
+
+
+('4', 'Playmates', 'Katy Sorkin', 'Katysorkin@playmatestoys.co.uk', 'MILLFIELD HOUSE, ERVINGTON COURT, Meridian Business Park', 'Leicestershire', 'East Midlands', 'England', '0116-282-3500', 'https://playmatestoys.com'); 
+
+
+
+INSERT INTO Supplier(Supplier_id, company_name, contact_name, contact_email, Address, city, region, post_code, country, phone, home_page)
+
+
+
+VALUES
+
+
+
+
+('5', 'Jakks Pacific', 'David Carscadden', 'davidcarscadden@jakkspacific.com', 'One Arlington Square, Downshire Way', 'Bracknell', 'Berkshire', 'RG12 1WA', 'England', '01344 638900', 'https://www.jakks.com'); 
+
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('1’, ‘Lego fish tank’, ‘1’, ‘4’, ‘1’, ‘24.99’, ‘78’, ‘57,’ ‘200’, ‘nil’);
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('2', 'Nerf Halo Bulldog', '2', '6', '1', '59.98', '1', '267', '167', '278', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('3', 'Monopoly', '2', '2', '1', '24.99', '189', '96', '156', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('4', 'Trivial Pursuit', '2', '1', '1', '21.60', '412', '234', '365', 'null'); 
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('5', 'Mr potato head', '2', '3', '1', '10.99', '28', '276', '215', 'null'); 
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('6', 'My Little Pony', '2', '2', '1', '14.62', '12', '0', '0', 'discontinued'); 
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('7', 'Guess who', '2', '1', '1', '22.98', '112', '109', '97', 'null');
+
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('8', 'Clue junior game', '2', '1', '1', '17.98', '232', '110', '200', 'null');
+
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('9', 'operation board game', '2', '1', '1', '17.98', '45', '26', '32', 'null'); 
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('10', 'Jenga', '2', '1', '1', '10.99', '21', '218', '166', 'null');
+
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('11', 'Twister', '2', '1', '1', '15.99', '57', '154', '100', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('12', 'Kerplunk', '2', '7', '1', '13.99', '152', '162', '165', 'null'); 
+
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('13', 'Frustration game', '2', '1', '1', '13.99', '7', '0', '0', 'discontinued')
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('14', 'FurReal', '2', '2', '1', '29.99', '0', '0', '0', 'discontinued');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('15', 'Lulu achoo doll', '2', '2', '33.46', '72', '89', '67', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('16', 'peppa pig ice cream truck', '2', '2', '24.99', '572', '409', '432', 'null'); 
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('17', 'dr strange figure', '2', '3', '1', '12.99', '525', '652', '645', 'null'); 
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('18', 'Red Skull', '2', '3', '1', '18.99', '342', '347', '430', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('19', 'Lady Deathstrike Figure', '2', '3', '1', '19.99', '215', '321', '256', 'null'); 
+
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('20', 'Luke Skywalker', '2', '3', '1', '14.95', '786', '652', '745', 'null'); 
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('21', 'transformers megatron', '2', '3', '1', '9.99', '198', '122', '156', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('22', 'Hulk action figure', '2', '3', '1', '24.99', '703', '792', '673', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('23', 'imperial death trooper', '2', '3', '1', '27.00', '733', '772', '563', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('24', 'Nerf scooter with blaster', '2', '5', '1', '35.00', '56', '27', '67', 'null'); 
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+('25', 'my little pony secret ring', '2', '2', '1', '3.49', '12', '188', '156', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+
+
+
+('26', 'Lego minecraft', '1', '4', '1', '20.00', '89', '95', '85', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('27', 'Lego Super Mario', '1', '3', '1', '25.00', '23', '74', '70', 'null');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('28','Lego DC Batman set','1', '3', '3', '35.00', '90', '78','84','null');
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('29','Lego Classic Medium Creative Brickbox', '1', '4','2','12.50', '23', '28', '32', 'discontinued');
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('30', 'Star Wars Boba Fetts Throne', '1', '4', '3','60.00','2', '568','456','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('31', 'Lego creator 3in1 mighty dinosaur building set', '1', '4', '3','13.00','45', '48','56','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('32', 'Lego city fire rescue', '1', '4', '1','25.00','485', '548','456','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('33', 'Lego treeset house with Mia', '1', '4', '1','46.00','85', '54','56','null');
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('34', 'Lego New York City arch set', '1', '4', '1','29.00','8', '29','36','null');
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('35', 'Lego speed champions Toyota', '1', '5', '1','18.00','8', '0','20','discontinued');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('36', 'Lego city police car', '1', '5', '1','9.00','18', '50','45','discontinued');
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('37', 'Lego marvel iron man mech armour', '1', '4', '1','9.00','218', '250','245','null');
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('38', 'Lego heartlake city organic cafe', '1', '4', '1','14.50','118', '150','145','null');
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('39', 'Lego Harry Potter dumbledore phoenix set', '1', '4', '3','35.00','128', '120','125','null');
+
+
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('40', 'Lego technic heavy duty excavator', '1', '4', '1','25.00','229', '221','256','null');
+
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('41', 'Lego dots banana pen holder crafts set', '1', '4', '1','18.00','129', '121','156','null');
+
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('42', 'Lego darth Vader helmet set', '1', '3', '5','18.00','526', '653','556','null');
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('43', 'Lego orchid plant and flower set', '1', '4', '2','45.00','37', '53','56','null');
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('44', 'Lego ninjago legacy jungle raider set', '1', '4', '3','9.00','137', '153','156','null');
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('45', 'Lego city lunar roving vehicle', '1', '5', '1','9.00','17', '15','19','null');
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('46', 'Lego friends magical funfair acrobatics set', '1', '4', '1','18.00','127', '125','129','null');
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('47', 'Lego speed champions lotus evija race car', '1', '4', '1','18.00','57', '64','59','null');
+
+
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('48', 'Lego technic Land Rover', '1', '5', '1','180.00','57', '64','59','null');
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('49', 'Barbie dream camper', '3', '2', '1','114.00','537', '644','579','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('50', 'Mega construx - MOTW ', '3', '3', '1','289.00','53', '64','57','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('51', 'Mattel Buzz light year figure', '3', '3', '1','12.74','35', '46','39','null');
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('52', 'Barbie Malibu house', '3', '2', '1','62.99','135', '146','139','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('53', 'Hot wheels track builder', '3', '5', '1','27.99','15', '17','139','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('54', 'Hot wheels dragon drive', '3', '5', '1','36.99','125', '127','139','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('55', 'Hot wheels mario kart', '3', '5', '1','29.99','25', '27','39','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('56', 'Linkimals musical moose', '3', '2', '1','15.99','5', '7','0','discontinued');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('57', 'Linkimals smooth moves sloth', '3', '2', '1','15.99','9', '12','0','discontinued');
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('58', 'Jurassic world T. rex thrash and smash', '3', '2', '1','54.99','19', '12','30','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('59', 'Jurassic world super collosal T. rex', '3', '3', '1','84.99','219', '212','230','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('60', 'Jurassic world triceratops', '3', '3', '1','20.99','29', '22','20','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('61', 'MichaelAngelo teenage mutant ninja turtle', '4', '3', '1','59.99','92', '75','120','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('62', 'Teenage mutant ninja turtle', '4', '3', '1','39.99','32', '55','142','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('63', 'Star Trek Lt commander', '4', '3', '1','49.99','132', '155','342','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('64', 'Monsterverse Godzilla vs Kong - King Kong with axe', '4', '3', '1','11.00','32', '55','42','null');
+
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('65', 'Godzilla Buddha', '4', '3', '1','8.51','312', '155','242','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('66', 'Air titans', '5', '3', '1','8.51','222', '254','242','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('67', 'Black + decker', '5', '4', '1','14.99','22', '24','42','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('68', 'Alien bug maker', '5', '4', '1','29.99','12', '14','32','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('69', 'Giant egg man robot battle set', '5', '3', '1','39.99','122', '124','232','null');
+
+INSERT INTO Product(Product_Id, Product_name, Supplier_ID, Category_ID, Quantity_Per_Unit, Unit_Price, Units_in_stock, Units_on_order, reorder_level, discontinued)
+
+
+
+VALUES
+
+('70', 'Sonic the hedgehog figure', '5', '3', '1','9.99','32', '75','134','null');
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('1', 'JP Morgan', 'Brad King', 'Salesman', '14 Richardson Road', 'London', 'Middlesex', 'e15 3bb', 'England', '07425538276', 'null' )
+
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('2', 'Tesla', 'Josh Banbury', 'Mechanical Engineer', '17 Cunnery Rd', 'Maidwell', 'Northamptonshire', 'NN6 2FU', 'England', ' 070 6727 2645', 'null' )
+
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('3', 'Burger King', 'Jed Hull', 'Store Manager', '23 Red Lane', 'Esprick', 'Lancashire', 'PR4 0YW', 'England', '078 6157 2065', 'null' )
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('4', 'BMW', 'Chris Hook', 'Car Salesman', '27 Town Lane', 'South Gorley', 'Dorset', 'SP6 2PS', 'England', '079 5506 3386', 'null' )
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('5', 'Harrods', 'Jeanette Oden', 'Make Up Artist', '21 Marcham Road', 'Borve', 'Highlands', 'IV51 3EG', 'United Kingdom', '077 3548 2076', 'null' )
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('6', 'Cisco Systems', 'Alan Smith', 'Network Engineer', '82 Boroughbridge Road', 'Bishopstone', 'Wiltshire', 'SP5 4HF', 'United Kingdom', '077 3548 2076', 'null' )
+
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('7', 'A-Mark Precious Metals', 'Julie Barham', 'Jewellery Specialist', '56 Wade Lane', 'Saltmarshe', 'East Riding', 'DN14 3SG', 'United Kingdom', '077 3548 2076', 'null' )
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('8', 'Raymond James Financial', 'Hope Knott', 'Financial Advisor', '48 Ilchester Road', 'Mulben', 'Moray', 'AB55 0XZ', 'United Kingdom', '070 0922 4336', 'null' )
+
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('9', 'Gamestop', 'James Bryant', 'Customer Service Advisor', '32 Academy Street', 'Berkswell', 'West Midlands', 'CV7 2PL', 'United Kingdom', '077 1046 2263', 'null' )
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('10', 'BJs Wholesale Club', 'Jim Major', 'Customer Service Advisor', ' 59 Netherpark Crescent', 'Sterridge', 'North Devon', ' EX34 7UF', 'United Kingdom', '077 4409 5546', 'null' )
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('11', 'Robert Half International', 'John Hallam', 'Recruitment Consultant', '37 St Denys Road', 'Prenbrigog', 'Flintshire', 'CH7 2ZH', 'United Kingdom', ' 070 4724 2254', 'null' )
+
+
+INSERT INTO CUSTOMER(customer_id, company_name, contact_name, contact_title, address, city, region, postal_code, country, phone, fax)
+
+VALUES
+
+('12', 'Alleghany', 'John Bolton', 'Land Surveyor', '53 Ponteland Rd', 'Hownam', 'Berwickshire', ' TD5 7GR', 'United Kingdom', '077 8553 6347', 'null' )
+
+
+
+
+
+
+
+
+
+
+
+
+INSERT INTO order_detail(order_id, product_id, unit_price, quantity, price)
+
+VALUES
+
+('1', '35', '18.00', '3', '54.00');
+
+INSERT INTO orders(order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, freight, ship_name, ship_address, ship_city, ship_region, ship_postcode, ship_country)
+
+VALUES
+
+('1', '3', '2000003', '2021-12-20', '2021-12-21', '2021-12-21', 'Hermes', 'Truck', 'Jed Hull', '23 Red Lane', 'Esprick', 'Lancashire', 'PR4 0YW', 'England');
+
+
+INSERT INTO order_detail(order_id, product_id, unit_price, quantity, price)
+
+VALUES
+
+('2', '24', '35.00', '2', '70.00');
+
+INSERT INTO orders(order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, freight, ship_name, ship_address, ship_city, ship_region, ship_postcode, ship_country)
+
+VALUES
+
+('2', '9', '2000007', '2021-12-21', '2021-12-22', '2021-12-22', 'Hermes', 'Truck', 'James Bryant', '32 Academy Street', 'Berkswell', 'West Midlands', 'CV7 2PL', 'United Kingdom');
+ 
+
+INSERT INTO order_detail(order_id, product_id, unit_price, quantity, price)
+
+VALUES
+
+('3', '19', '19.99', '1', '19.99');
+
+INSERT INTO orders(order_id, customer_id, employee_id, order_date, required_date, shipped_date, shipped_via, freight, ship_name, ship_address, ship_city, ship_region, ship_postcode, ship_country)
+
+VALUES
+
+('2', '4', '2000004', '2021-12-22', '2021-12-23', '2021-12-23', 'Hermes', 'Truck', 'Chris Hook', '27 Town Lane', 'South Gorley', 'Dorset', 'SP6 2PS', 'England');
+ 
