@@ -1,0 +1,44 @@
+If I need to calculate the number of orders per product.
+
+My query would be
+
+SELECT product_id,
+       COUNT(order_id) as orders
+       from order_detail
+       GROUP BY product_id
+
+
+If I need to calculate the revenue per product. 
+
+My query would be
+
+SELECT product_id,
+       SUM(price) as revenue
+       from order_detail
+       GROUP BY product_id
+
+If I need to calculate the Average Order Value per product
+
+My query would be -
+
+SELECT product_id,
+       AVG(price) as AOV
+       from order_detail
+       GROUP BY product_id
+
+If I want to find all products that costs more than 19.99
+
+select * from product 
+where unit_price > '19.99'
+
+I need to find all Lego products
+
+select * from product 
+where supplier_id = '1'
+       
+
+I need the phone number of Jed Hull.
+
+select phone from customer 
+where contact_name = 'Jed Hull'
+       
